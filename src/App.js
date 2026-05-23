@@ -108,13 +108,15 @@ function NumResults({ movies }) {
 function Main({ movies }) {
   return (
     <main className="main">
-      <ListBox movies={movies} />
+      <ListBox>
+        <MovieList movies={movies} />
+      </ListBox>
       <WatchedBox />
     </main>
   );
 }
 
-function ListBox({ movies }) {
+function ListBox({ children }) {
   const [isOpen1, setIsOpen1] = useState(true);
 
   return (
@@ -125,7 +127,7 @@ function ListBox({ movies }) {
       >
         {isOpen1 ? "–" : "+"}
       </button>
-      {isOpen1 && <MovieList movies={movies} />}
+      {isOpen1 && children}
     </div>
   );
 }
