@@ -55,18 +55,20 @@ export default function App() {
 
   return (
     <>
-      <NavBar />
-      <Main movies={movies}/>
+      <NavBar>
+        <NumResults movies={movies} />
+      </NavBar>
+      <Main movies={movies} />
     </>
   );
 }
 
-function NavBar() {
+function NavBar({ children }) {
   return (
     <nav className="nav-bar">
       <Logo />
       <Search />
-      <NumResults />
+      {children}
     </nav>
   );
 }
@@ -94,24 +96,25 @@ function Search() {
   );
 }
 
-function NumResults() {
+function NumResults({ movies }) {
+  const moviesCount = movies.length;
   return (
     <p className="num-results">
-      Found <strong>X</strong> results
+      Found <strong>{moviesCount}</strong> results
     </p>
   );
 }
 
-function Main({movies}) {
+function Main({ movies }) {
   return (
     <main className="main">
-      <ListBox movies={movies}/>
+      <ListBox movies={movies} />
       <WatchedBox />
     </main>
   );
 }
 
-function ListBox({movies}) {
+function ListBox({ movies }) {
   const [isOpen1, setIsOpen1] = useState(true);
 
   return (
@@ -122,13 +125,12 @@ function ListBox({movies}) {
       >
         {isOpen1 ? "–" : "+"}
       </button>
-      {isOpen1 && <MovieList movies={movies}/>}
+      {isOpen1 && <MovieList movies={movies} />}
     </div>
   );
 }
 
-function MovieList({movies}) {
-
+function MovieList({ movies }) {
   return (
     <ul className="list">
       {movies?.map((movie) => (
@@ -209,13 +211,13 @@ function WatchedMovieList({ watched }) {
   return (
     <ul className="list">
       {watched.map((movie) => (
-        <WatchedMovieItem movie={movie} key={movie.imdbID}/>
+        <WatchedMovieItem movie={movie} key={movie.imdbID} />
       ))}
     </ul>
   );
 }
 
-function WatchedMovieItem({movie}) {
+function WatchedMovieItem({ movie }) {
   return (
     <li>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
