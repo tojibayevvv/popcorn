@@ -12,8 +12,15 @@ const starItem = {
   gap: "5px",
 };
 
+const textStyle = {
+  lineHeight: "1",
+  margin: "0",
+  // color,
+  // fontSize: `${size / 1.5}px`,
+};
+
 export default function StarRating({ maxRating = 3 }) {
-  const [rating, setRating] = useState();
+  const [rating, setRating] = useState(3);
 
   function handleRating(rating) {
     setRating(rating);
@@ -23,10 +30,14 @@ export default function StarRating({ maxRating = 3 }) {
     <div style={starContainer}>
       <div style={starItem}>
         {Array.from({ length: maxRating }, (_, i) => (
-          <Star key={i} onRate={() => handleRating(i + 1)} />
+          <Star
+            key={i}
+            onRate={() => handleRating(i + 1)}
+            full={rating >= i + 1}
+          />
         ))}
       </div>
-      <div>10</div>
+      <p style={textStyle}>{rating || ""}</p>
     </div>
   );
 }
@@ -40,7 +51,7 @@ const starStyle = {
 
 function Star({ onRate, full }) {
   return (
-    <span style={starStyle}>
+    <span style={starStyle} role="button" onClick={onRate}>
       {full ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
