@@ -34,25 +34,12 @@ export default function TextExpander() {
   );
 }
 
-function Expander({
-  collapsedNumWords = 15,
-  expandButtonText = "Show more",
-  collapseButtonText = "Show less",
-  buttonColor,
-  expanded = false,
-  className,
-  children,
-}) {
-  const [isExpanded, setIsExpanded] = useState(expanded);
+function Expander() {
 
-  const displayText = isExpanded ? children : children.split(" ").slice(0, collapsedNumWords).join(" ") + ("...");
 
   return (
     <div>
-      <span>{displayText}</span>
-      <button onClick={() => setIsExpanded((exp) => !exp)}>
-        {isExpanded ? collapseButtonText : expandButtonText}
-      </button>
+      Todo
     </div>
   );
 }
