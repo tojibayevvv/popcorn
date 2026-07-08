@@ -12,10 +12,8 @@ export default function TextExpander() {
       </Expander>
 
       <Expander
-        collapsedNumWords={20}
         expandButtonText="Show text"
         collapseButtonText="Collapse text"
-        buttonColor="#ff6622"
       >
         Space travel requires some seriously amazing technology and
         collaboration between countries, private companies, and international
@@ -35,20 +33,22 @@ export default function TextExpander() {
 }
 
 function Expander({
-  collapsedNumWords = 10,
+  collapsedNumWords = 5,
   expandButtonText = "Show text",
   collapseButtonText = "Collapse text",
   children,
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
-
+  const displayText = isExpanded
+    ? children
+    : children.split(" ").slice(0, collapsedNumWords).join(" ") + "...";
 
   function handleClick() {
     setIsExpanded((exp) => !exp);
   }
   return (
     <div>
-      {isExpanded ? children : "Closed"}
+      {isExpanded ? children : displayText}
       <button onClick={() => handleClick()}>
         {isExpanded ? collapseButtonText : expandButtonText}
       </button>
