@@ -340,6 +340,10 @@ body {
 
 .expander__button{
   background-color: #6741d9;
+  color: #dee2e6;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
 }
 /*
 SPACING SYSTEM (px)
