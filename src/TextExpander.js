@@ -11,10 +11,7 @@ export default function TextExpander() {
         push the boundaries of what's possible.
       </Expander>
 
-      <Expander
-        expandButtonText="Show text"
-        collapseButtonText="Collapse text"
-      >
+      <Expander>
         Space travel requires some seriously amazing technology and
         collaboration between countries, private companies, and international
         space organizations. And while it's not always easy (or cheap), the
@@ -22,7 +19,7 @@ export default function TextExpander() {
         foot on the moon or when rovers were sent to roam around on Mars.
       </Expander>
 
-      <Expander expanded={true} className="box">
+      <Expander>
         Space missions have given us incredible insights into our universe and
         have inspired future generations to keep reaching for the stars. Space
         travel is a pretty cool thing to think about. Who knows what we'll
@@ -32,17 +29,21 @@ export default function TextExpander() {
   );
 }
 
-function Expander({children}) {
-  
+function Expander({
+  expandButtonText = "Show text",
+  collapseButtonText = "Collapse text",
+  children,
+}) {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  function handleClick(){
+  function handleClick() {
     setIsExpanded((exp) => !exp);
   }
+
   return (
     <div>
       {isExpanded ? children : "False"}
-      <button onClick={handleClick}>Show text</button>
+      <button onClick={handleClick}>{isExpanded ? collapseButtonText : expandButtonText}</button>
     </div>
   );
 }
