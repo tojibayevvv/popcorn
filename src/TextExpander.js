@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./index.css"
 
 export default function TextExpander() {
   return (
@@ -46,7 +47,7 @@ function Expander({
   return (
     <div>
       {isExpanded ? children : collapsedText}
-      <button onClick={handleClick}>{isExpanded ? collapseButtonText : expandButtonText}</button>
+      <button className="expander__button" onClick={handleClick}>{isExpanded ? collapseButtonText : expandButtonText}</button>
     </div>
   );
 }
