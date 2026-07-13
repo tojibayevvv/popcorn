@@ -32,11 +32,17 @@ export default function TextExpander() {
   );
 }
 
-function Expander() {
+function Expander({children}) {
   
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  function handleClick(){
+    setIsExpanded((exp) => !exp);
+  }
   return (
     <div>
-      Todo
+      {isExpanded ? children : "False"}
+      <button onClick={handleClick}>Show text</button>
     </div>
   );
 }
