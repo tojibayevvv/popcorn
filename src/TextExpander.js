@@ -32,9 +32,12 @@ export default function TextExpander() {
 function Expander({
   expandButtonText = "Show text",
   collapseButtonText = "Collapse text",
+  minText = 5,
   children,
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const collapsedText = children.split(" ").slice(0, minText).join(" ") + ".... "
 
   function handleClick() {
     setIsExpanded((exp) => !exp);
@@ -42,7 +45,7 @@ function Expander({
 
   return (
     <div>
-      {isExpanded ? children : "False"}
+      {isExpanded ? children : collapsedText}
       <button onClick={handleClick}>{isExpanded ? collapseButtonText : expandButtonText}</button>
     </div>
   );
